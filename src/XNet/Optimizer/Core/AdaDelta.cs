@@ -3,11 +3,11 @@ using XNet.Optimizer.Utility;
 
 namespace XNet.Optimizer.Core
 {
-    public sealed class GradientDescent : Utility.Optimizer
+    public sealed class AdaDelta : Utility.Optimizer
     {
         public double Alpha { get; set; }
 
-        public GradientDescent(double alpha)
+        public AdaDelta(double alpha)
         {
             Alpha = alpha;
         }
