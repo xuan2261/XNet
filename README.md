@@ -19,6 +19,26 @@ The framework's architecture is currently what's in development.
 
 The next step will be filling in the blanks and writing the code for each file.
 
+## PROJECT FEATURES
+
+- Supports a varity of network architectures and models.
+
+- Supports a varity of layers.
+
+- Supports a varity of activation functions.
+
+- Supports a varity of regularization functions.
+
+- Supports a varity of optimizers.
+
+- Supports a varity of random matrix initialization.
+
+- Extremely Portable.
+
+- Extremely Versatile.
+
+- Good Architecture and Code-base: You can easily implement it in your own projects.
+
 # LICENSE
 
 The XNet project uses the Apache License version 2.0
