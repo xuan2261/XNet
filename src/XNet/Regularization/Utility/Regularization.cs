@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using XNet.Math;
 
-namespace XNet.Utility.Regularization
+namespace XNet.Regularization.Utility
 {
     public abstract class Regularization
     {
+        public double Lambda { get; set; }
+
+        protected Regularization(double lambda)
+        {
+            Lambda = lambda;
+        }
+
+        public abstract double CalculateNorm(Matrix X);
+
+        public abstract ERegularizationType Type();
     }
 }
