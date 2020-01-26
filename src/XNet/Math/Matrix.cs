@@ -1003,6 +1003,21 @@ namespace XNet.Math
             return System.Math.Sqrt(result);
         }
 
+        // Absolute Norm
+        public static double AbsoluteNorm(Matrix m)
+        {
+            double result = 0;
+            for (int i = 0; i < m.rows; i++)
+            {
+                for (int j = 0; j < m.cols; j++)
+                {
+                    double value = m[i, j];
+                    result += System.Math.Abs(value);
+                }
+            }
+            return result;
+        }
+
         // Map
         public static Matrix Map(Matrix m, MatrixMapFunction func)
         {
