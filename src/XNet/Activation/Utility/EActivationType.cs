@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XNet.Utility.Activation
+﻿namespace XNet.Activation.Utility
 {
     public enum EActivationType
     {
+        Invalid,
+        Arctan,
+        BinaryStep,
+        BipolarSigmoid,
+        ELU,
+        HardSigmoid,
+        HardTanh,
+        Identity,
+        Logit,
+        LReLU,
+        ReLU,
+        SeLU,
+        Sigmoid,
+        Softmax,
+        Softplus,
+        Softsign,
+        Tanh            
     }
 }
