@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using XNet.Math;
+using XNet.Regularization.Utility;
 
 namespace XNet.Regularization.Core
 {
-    class L2
+    public sealed class L2 : Utility.Regularization
     {
+        public L2(double lambda) : base(lambda) { }
+
+        public override bool Equals(object obj) => base.Equals(obj);
+
+        public override int GetHashCode() => base.GetHashCode();
+
+        public override double CalculateNorm(Matrix X) => (Matrix.EuclideanNorm(X) * Lambda);
+
+        public override string ToString() => Type().ToString();
+
+        public override ERegularizationType Type() => ERegularizationType.L2;
+
     }
 }
