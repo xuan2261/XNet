@@ -1,4 +1,6 @@
-﻿using XNet.Math;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using XNet.Math;
 
 namespace XNet.Activation.Core
 {
@@ -10,48 +12,20 @@ namespace XNet.Activation.Core
         {
             Alpha = alpha;
         }
-        public override Matrix Forward(Matrix input)
-        {
-            return Matrix.Map(input, Activate);
-        }
+        public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 
-        public override Matrix Backward(Matrix input)
-        {
-            return Matrix.Map(input, Derivative);
-        }
+        public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);
 
-        public override double Activate(double input)
-        {
-            return System.Math.Max(input, Alpha);
-        }
+        public override double Activate(double input) => System.Math.Max(input, Alpha);
 
-        public override double Derivative(double input)
-        {
-            if (input > 0)
-            {
-                return 1;
-            }
-            return Alpha;
-        }
+        public override double Derivative(double input) => (input > 0) ? 1 : Alpha;
 
-        public override Utility.EActivationType Type()
-        {
-            return Utility.EActivationType.LReLU;
-        }
+        public override Utility.EActivationType Type() => Utility.EActivationType.Arctan;
 
-        public override string ToString()
-        {
-            return Type().ToString();
-        }
+        public override string ToString() => Type().ToString();
 
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
+        public override bool Equals(object obj) => base.Equals(obj);
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        public override int GetHashCode() => base.GetHashCode();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace XNet.Activation.Utility
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+namespace XNet.Activation.Utility
 {
     public enum EActivationType
     {

@@ -1,4 +1,6 @@
-﻿using XNet.Math;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using XNet.Math;
 
 namespace XNet.Activation.Core
 {
@@ -32,40 +34,18 @@ namespace XNet.Activation.Core
             return res;
         }
 
-        public override Matrix Backward(Matrix input)
-        {
-            return Matrix.Map(input, Derivative);
-        }
+        public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);
 
-        public override double Activate(double input)
-        {
-            return 0;
-        }
+        public override double Activate(double input) => 0;
 
-        public override double Derivative(double input)
-        {
-            double softmax = System.Math.Exp(input) / SumExp;
-            return softmax * (1 - softmax);
-        }
+        public override double Derivative(double input) => System.Math.Exp(input) / SumExp * (1 - System.Math.Exp(input) / SumExp);
 
-        public override Utility.EActivationType Type()
-        {
-            return Utility.EActivationType.Softmax;
-        }
+        public override Utility.EActivationType Type() => Utility.EActivationType.Softmax;
 
-        public override string ToString()
-        {
-            return Type().ToString();
-        }
+        public override string ToString() => Type().ToString();
 
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
+        public override bool Equals(object obj) => base.Equals(obj);
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        public override int GetHashCode() => base.GetHashCode();
     }
 }
