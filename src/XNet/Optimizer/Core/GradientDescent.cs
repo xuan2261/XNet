@@ -1,5 +1,6 @@
 ﻿using XNet.Math;
 using XNet.Optimizer.Utility;
+using XNet.Regularization.Utility;
 
 namespace XNet.Optimizer.Core
 {
@@ -7,7 +8,7 @@ namespace XNet.Optimizer.Core
     {
         public double Alpha { get; set; }
 
-        public GradientDescent(double alpha)
+        public GradientDescent(ERegularizationType regularizationType, double alpha) : base(regularizationType)
         {
             Alpha = alpha;
         }
@@ -22,12 +23,6 @@ namespace XNet.Optimizer.Core
             return base.GetHashCode();
         }
 
-        public override Matrix OptimizeMatrix(Matrix X, Matrix dJdX)
-        {            
-            Matrix deltaX = (Alpha * (Matrix.Transpose(X) * dJdX));
-            return deltaX;
-        }
-
         public override string ToString()
         {
             return Type().ToString();
@@ -36,6 +31,16 @@ namespace XNet.Optimizer.Core
         public override EOptimizerType Type()
         {
             return EOptimizerType.GradientDescent;
+        }
+
+        public override Matrix CalculateDeltaW(Matrix W, Matrix dJdW)
+        {
+            return (Alpha * (Matrix.Transpose(W) * dJdW)) + RegularizationAgent.CalculateNorm(W);
+        }
+
+        public override Matrix CalculateDeltaB(Matrix b, Matrix dJdb)
+        {
+            return (Alpha * (Matrix.Transpose(b) * dJdb));
         }
     }
 }
