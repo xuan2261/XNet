@@ -12,6 +12,7 @@
         Identity,
         Logit,
         LReLU,
+        Mish,
         ReLU,
         SeLU,
         Sigmoid,
