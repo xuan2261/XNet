@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XNet.Utility.Regularization
+namespace XNet.Regularization.Utility
 {
     public enum ERegularizationType
     {
+        Invalid,
+        None,
+        L1,
+        L2
     }
 }
