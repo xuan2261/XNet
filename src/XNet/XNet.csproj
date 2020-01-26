@@ -73,6 +73,7 @@
     <Compile Include="Layer\Utility\ELayerType.cs" />
     <Compile Include="Layer\Utility\LayerSettings.cs" />
     <Compile Include="Layer\Utility\Layer.cs" />
+    <Compile Include="Math\EDistrubution.cs" />
     <Compile Include="Network\Core\AE.cs" />
     <Compile Include="Network\Core\DBM.cs" />
     <Compile Include="Network\Core\DCIGN.cs" />
@@ -113,9 +114,6 @@
     <Compile Include="Regularization\Utility\Regularization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Math\Matrix.cs" />
-    <Compile Include="Math\Scalar.cs" />
-    <Compile Include="Math\Tensor.cs" />
-    <Compile Include="Math\Vector.cs" />
     <Compile Include="Utility\Architecture.cs" />
     <Compile Include="Utility\Dims.cs" />
     <Compile Include="Utility\Pair.cs" />
