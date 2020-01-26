@@ -3,8 +3,15 @@ using XNet.Optimizer.Utility;
 
 namespace XNet.Optimizer.Core
 {
-    public sealed class AdaDelta : Utility.Optimizer
+    public sealed class GradientDescent : Utility.Optimizer
     {
+        public double Alpha { get; set; }
+
+        public GradientDescent(double alpha)
+        {
+            Alpha = alpha;
+        }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -17,7 +24,8 @@ namespace XNet.Optimizer.Core
 
         public override Matrix OptimizeMatrix(Matrix X, Matrix dJdX)
         {
-            throw new System.NotImplementedException();
+            Matrix deltaX = (Alpha * (Matrix.Transpose(X) * dJdX));
+            return deltaX;
         }
 
         public override string ToString()
@@ -27,7 +35,7 @@ namespace XNet.Optimizer.Core
 
         public override EOptimizerType Type()
         {
-            return EOptimizerType.AdaDelta;
+            return EOptimizerType.GradientDescent;
         }
     }
 }
