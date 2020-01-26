@@ -1,4 +1,6 @@
-﻿using XNet.Math;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using XNet.Math;
 using XNet.Regularization.Utility;
 
 namespace XNet.Regularization.Core
