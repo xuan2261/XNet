@@ -17,7 +17,7 @@ namespace XNet.Activation.Utility
         public abstract double Derivative(double input);
 
         // Gets the type of the Activation Function Class
-        public abstract Utility.EActivationType Type();
+        public abstract EActivationType Type();
         
     }
 }
