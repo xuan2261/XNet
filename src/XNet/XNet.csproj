@@ -49,6 +49,7 @@
     <Compile Include="Activation\Core\Identity.cs" />
     <Compile Include="Activation\Core\Logit.cs" />
     <Compile Include="Activation\Core\LReLU.cs" />
+    <Compile Include="Activation\Core\Mish.cs" />
     <Compile Include="Activation\Core\ReLU.cs" />
     <Compile Include="Activation\Core\SeLU.cs" />
     <Compile Include="Activation\Core\Sigmoid.cs" />
