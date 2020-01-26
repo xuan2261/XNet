@@ -39,7 +39,7 @@ The next step will be filling in the blanks and writing the code for each file.
 
 - Good Architecture and Code-base: You can easily implement it in your own projects.
 
-# LICENSE
+## LICENSE
 
 The XNet project uses the Apache License version 2.0
 
@@ -61,7 +61,16 @@ The XNet project uses the Apache License version 2.0
 
 The full version of License is available in [this file](https://github.com/nirex0/XNet/blob/master/LICENSE).
 
-# CONTACT
+## ROAD MAP
+
+1) Matrix 
+2) Activations
+3) Regularization
+4) Layers
+5) Optimizers
+6) Networks
+
+## CONTACT
 
 ### Main Developer:
 
