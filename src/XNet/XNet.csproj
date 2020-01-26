@@ -106,13 +106,13 @@
     <Compile Include="Optimizer\Core\RMSProp.cs" />
     <Compile Include="Optimizer\Utility\EOptimizerType.cs" />
     <Compile Include="Optimizer\Utility\Optimizer.cs" />
-    <Compile Include="Regularization\Core\L1.cs" />
     <Compile Include="Regularization\Core\L2.cs" />
+    <Compile Include="Regularization\Core\L1.cs" />
+    <Compile Include="Regularization\Core\None.cs" />
     <Compile Include="Regularization\Utility\ERegularizationType.cs" />
-    <Compile Include="Regularization\Utility\RegularizationSettings.cs" />
-    <Compile Include="Regularization\Utility\Regularization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Math\Matrix.cs" />
+    <Compile Include="Regularization\Utility\Regularization.cs" />
     <Compile Include="Utility\Architecture.cs" />
     <Compile Include="Utility\Dims.cs" />
     <Compile Include="Utility\Pair.cs" />
