@@ -8,5 +8,6 @@ namespace XNet.Utility.Layer
 {
     public abstract class Layer
     {
+        public abstract ELayerType Type();
     }
 }
