@@ -15,7 +15,9 @@ namespace XNet.Activation.Core
         public override double Derivative(double input)
         {
             double epsilon = 2 * System.Math.Exp(input) + System.Math.Exp(2 * input) + 2;
-            double omega = 4 * (input + 1) + 4 * System.Math.Exp(2 * input) + System.Math.Exp(3 * input) + System.Math.Exp(input) * (4 * input + 6);
+
+            double omega = 4 * (input + 1) + 4 * System.Math.Exp(2 * input) + 
+                System.Math.Exp(3 * input) + System.Math.Exp(input) * (4 * input + 6);
 
             return ((System.Math.Exp(input) * omega) / System.Math.Pow(epsilon, 2));
         }

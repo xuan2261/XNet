@@ -12,6 +12,7 @@ namespace XNet.Activation.Core
         {
             Alpha = alpha;
         }
+
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 
         public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);

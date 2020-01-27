@@ -11,6 +11,7 @@ namespace XNet.Activation.Core
         public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);
 
         public override double Activate(double input) => (input < 0) ? 0 : (input < 1) ? input : 1;
+
         public override double Derivative(double input) => (input > 1 || input < 0) ? 0 : 1;
 
         public override Utility.EActivationType Type() => Utility.EActivationType.HardSigmoid;
