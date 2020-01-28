@@ -35,7 +35,7 @@ namespace XNet.Optimizer.Core
 
         public override Matrix CalculateDeltaW(Matrix W, Matrix dJdW)
         {
-            return (Alpha * (Matrix.Transpose(W) * dJdW)) + RegularizationAgent.CalculateNorm(W);
+            return (Alpha * (Matrix.Transpose(W) * dJdW));
         }
 
         public override Matrix CalculateDeltaB(Matrix b, Matrix dJdb)
