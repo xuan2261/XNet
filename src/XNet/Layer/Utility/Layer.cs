@@ -2,34 +2,8 @@
 using System.Collections.Generic;
 using XNet.Activation.Core;
 using XNet.Activation.Utility;
-using XNet.Math;
+using XNet.XMath;
 using XNet.Utility;
-
-/******************************************\
- 
-    TODO: Create class for this.
-
-    XNet Layer Data Architecture:
-    
-    Forward Prop:
-        List<Matrix> mat;
-        mat[0] = W;
-        mat[1] = X;
-        mat[2] = b;
-    
-    Backward Prop:
-        List<List<Matrix> mat;
-        mat[0] = MatrixData;
-            mat[0][0] = W;
-            mat[0][1] = X;
-            mat[0][2] = b;
-            
-        mat[1] = MatrixGrad;
-            mat[1][0] = W_grad;
-            mat[1][1] = X_grad;
-            mat[1][2] = b_grad;
-
-\******************************************/
 
 namespace XNet.Layer.Utility
 {
@@ -117,7 +91,7 @@ namespace XNet.Layer.Utility
         /// </summary>
         /// <param name="input">Input Data</param>
         /// <returns>Output data</returns>
-        public abstract List<Matrix> Forward(List<Matrix> input);
+        public abstract List<Matrix> Forward(MatrixData input);
 
         /// <summary>
         /// This method needs to be overriden on sub-classes.
@@ -128,7 +102,7 @@ namespace XNet.Layer.Utility
         /// out[0] = Output Data 
         /// out[1] = Output Gradients
         /// </returns>
-        public abstract List<List<Matrix>> Backward(List<Matrix> input_data, List<Matrix> input_grad);
+        public abstract MatrixData Backward(MatrixData input);
         
         public abstract ELayerType Type();
 
@@ -142,7 +116,7 @@ namespace XNet.Layer.Utility
         public Dims InShape { get; private set; }
         public Dims OutShape { get; private set; }
 
-        protected LayerSettings(Dims inShape, Dims outShape)
+        public LayerSettings(Dims inShape, Dims outShape)
         {
             InShape = inShape;
             OutShape = outShape;
