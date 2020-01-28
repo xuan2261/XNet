@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using XNet.Layer.Utility;
-using XNet.Math;
+using XNet.XMath;
 using XNet.Utility;
 
 namespace XNet.Layer.Core

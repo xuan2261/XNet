@@ -1,4 +1,4 @@
-﻿using XNet.Math;
+﻿using XNet.XMath;
 using XNet.Optimizer.Utility;
 using XNet.Regularization.Utility;
 

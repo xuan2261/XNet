@@ -1,4 +1,4 @@
-﻿using XNet.Math;
+﻿using XNet.XMath;
 
 namespace XNet.Optimizer.Utility
 {

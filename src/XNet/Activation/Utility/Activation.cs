@@ -1,6 +1,6 @@
 ﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
 
-using XNet.Math;
+using XNet.XMath;
 
 namespace XNet.Activation.Utility
 {
