@@ -59,6 +59,8 @@
     <Compile Include="Activation\Core\Tanh.cs" />
     <Compile Include="Activation\Utility\Activation.cs" />
     <Compile Include="Activation\Utility\EActivationType.cs" />
+    <Compile Include="Cost\Utility\Cost.cs" />
+    <Compile Include="Cost\Utility\ECostType.cs" />
     <Compile Include="Layer\Core\AveragePooling.cs" />
     <Compile Include="Layer\Core\AverageUnpooling.cs" />
     <Compile Include="Layer\Core\Convolutional.cs" />
@@ -119,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cost\Core\" />
-    <Folder Include="Cost\Utility\" />
     <Folder Include="Processing\Audio\" />
     <Folder Include="Processing\Image\" />
     <Folder Include="Processing\Matrix\" />
