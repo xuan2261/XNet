@@ -73,8 +73,8 @@ namespace XNet.Layer.Core
         public override Dims InShape()
         {
             // These will be initialized in the Network class
-            int x = GlobalData.Data["ISX" + (Index).ToString()].cols;
-            int y = GlobalData.Data["ISY" + (Index).ToString()].rows;
+            int x = GlobalData.Data["IS" + (Index).ToString()].rows;
+            int y = GlobalData.Data["IS" + (Index).ToString()].cols;
 
             Dims dims = new Dims();
             dims.Values.Add(x);
@@ -86,8 +86,8 @@ namespace XNet.Layer.Core
         public override Dims OutShape()
         {
             // These will be initialized in the Network class
-            int x = GlobalData.Data["OSX" + (Index).ToString()].cols;
-            int y = GlobalData.Data["OSY" + (Index).ToString()].rows;
+            int x = GlobalData.Data["OS" + (Index).ToString()].rows;
+            int y = GlobalData.Data["OS" + (Index).ToString()].cols;
 
             Dims dims = new Dims();
             dims.Values.Add(x);
