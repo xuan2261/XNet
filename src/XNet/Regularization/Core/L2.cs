@@ -18,6 +18,5 @@ namespace XNet.Regularization.Core
         public override string ToString() => Type().ToString();
 
         public override ERegularizationType Type() => ERegularizationType.L2;
-
     }
 }
