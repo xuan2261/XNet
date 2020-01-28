@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using System;
 using XNet.Activation.Core;
 using XNet.Activation.Utility;
 using XNet.XMath;
