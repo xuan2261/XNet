@@ -1,4 +1,6 @@
-﻿namespace XNet.Layer.Utility
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+namespace XNet.Layer.Utility
 {
     public enum ELayerType
     {
