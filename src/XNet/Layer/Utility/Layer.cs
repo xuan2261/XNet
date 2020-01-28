@@ -12,14 +12,18 @@ namespace XNet.Layer.Utility
     /// </summary>
     public abstract class Layer
     {
+        public MatrixData GlobalData { get; protected set; }
+
         public EActivationType ActivationType { get; private set; }
 
         public Activation.Utility.Activation Activation { get; private set; }
         
         public LayerSettings LayerConfig { get; private set; }
 
-        public Layer(ActivationSettings activationSettings, LayerSettings layerSettings)
+        public Layer(int index, ActivationSettings activationSettings, LayerSettings layerSettings)
         {
+            Index = index;
+
             ActivationType = activationSettings.Type();
 
             LayerConfig = layerSettings;
@@ -85,30 +89,18 @@ namespace XNet.Layer.Utility
                     throw new ArgumentException("Activation Type Invalid.");
             }
         }
+        
+        public abstract void Forward(ref MatrixData input);
 
-        /// <summary>
-        /// This method needs to be overriden on sub-classes.
-        /// </summary>
-        /// <param name="input">Input Data</param>
-        /// <returns>Output data</returns>
-        public abstract List<Matrix> Forward(MatrixData input);
-
-        /// <summary>
-        /// This method needs to be overriden on sub-classes.
-        /// </summary>
-        /// <param name="input_data">Input Data</param>
-        /// <param name="input_grad">Input Gradients</param>
-        /// <returns>
-        /// out[0] = Output Data 
-        /// out[1] = Output Gradients
-        /// </returns>
-        public abstract MatrixData Backward(MatrixData input);
+        public abstract void Backward(ref MatrixData input);
         
         public abstract ELayerType Type();
 
         public virtual Dims InShape() => LayerConfig.InShape;
 
         public virtual Dims OutShape() => LayerConfig.OutShape;
+
+        public int Index { get; private set; }
     }
 
     public abstract class LayerSettings
