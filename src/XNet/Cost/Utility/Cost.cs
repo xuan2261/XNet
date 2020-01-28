@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using XNet.XMath;
 
 namespace XNet.Cost.Utility
 {
-    class Cost
+    public abstract class Cost
     {
+        public abstract Matrix Forward(Matrix Actual, Matrix Expected);
+
+        public abstract Matrix Backward(Matrix Actual, Matrix Expected);
+
+        public abstract ECostType Type();
     }
 }
