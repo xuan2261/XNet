@@ -1,4 +1,4 @@
-﻿namespace XNet.Utility.Layer
+﻿namespace XNet.Layer.Utility
 {
     public enum ELayerType
     {
