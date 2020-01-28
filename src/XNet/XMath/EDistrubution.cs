@@ -1,4 +1,4 @@
-﻿namespace XNet.Math
+﻿namespace XNet.XMath
 {
     public enum EDistrubution
     {
