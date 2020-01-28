@@ -59,6 +59,12 @@
     <Compile Include="Activation\Core\Tanh.cs" />
     <Compile Include="Activation\Utility\Activation.cs" />
     <Compile Include="Activation\Utility\EActivationType.cs" />
+    <Compile Include="Cost\Core\GeneralizedKullbackLeiblerDivergence.cs" />
+    <Compile Include="Cost\Core\HellingerDistance.cs" />
+    <Compile Include="Cost\Core\CrossEntropyCost.cs" />
+    <Compile Include="Cost\Core\ItakuraSaitoDistance.cs" />
+    <Compile Include="Cost\Core\KullbackLeiblerDivergence.cs" />
+    <Compile Include="Cost\Core\QuadraticCost.cs" />
     <Compile Include="Cost\Utility\Cost.cs" />
     <Compile Include="Cost\Utility\ECostType.cs" />
     <Compile Include="Layer\Core\AveragePooling.cs" />
@@ -120,7 +126,6 @@
     <Compile Include="Utility\Pair.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Cost\Core\" />
     <Folder Include="Processing\Audio\" />
     <Folder Include="Processing\Image\" />
     <Folder Include="Processing\Matrix\" />
