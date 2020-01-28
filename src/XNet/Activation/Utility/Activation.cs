@@ -22,4 +22,10 @@ namespace XNet.Activation.Utility
         public abstract EActivationType Type();
         
     }
+
+    public abstract class ActivationSettings
+    {
+        // Gets the type of the Activation Settings Class
+        public abstract EActivationType Type();
+    }
 }

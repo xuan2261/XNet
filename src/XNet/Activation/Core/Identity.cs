@@ -6,6 +6,8 @@ namespace XNet.Activation.Core
 {
     public sealed class Identity : Utility.Activation
     {
+        public Identity(IdentitySettings settings = null) { }
+
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 
         public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);
@@ -21,5 +23,10 @@ namespace XNet.Activation.Core
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class IdentitySettings : Utility.ActivationSettings
+    {
+        public override Utility.EActivationType Type() => Utility.EActivationType.Identity;
     }
 }

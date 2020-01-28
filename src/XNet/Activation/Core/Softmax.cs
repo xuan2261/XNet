@@ -6,6 +6,8 @@ namespace XNet.Activation.Core
 {
     public sealed class Softmax : Utility.Activation
     {
+        public Softmax(SoftmaxSettings settings = null) { }
+
         public double SumExp { get; private set; }
 
         public Softmax()
@@ -47,5 +49,10 @@ namespace XNet.Activation.Core
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class SoftmaxSettings : Utility.ActivationSettings
+    {
+        public override Utility.EActivationType Type() => Utility.EActivationType.Softmax;
     }
 }

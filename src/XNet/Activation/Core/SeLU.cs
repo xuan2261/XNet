@@ -6,6 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class SeLU : Utility.Activation
     {
+        public SeLU(SeLUSettings settings = null) { }
 
         public const double Alpha = 1.6732632423543772848170429916717;
 
@@ -26,5 +27,10 @@ namespace XNet.Activation.Core
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class SeLUSettings : Utility.ActivationSettings
+    {
+        public override Utility.EActivationType Type() => Utility.EActivationType.SeLU;
     }
 }

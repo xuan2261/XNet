@@ -6,11 +6,12 @@ namespace XNet.Activation.Core
 {
     public sealed class ELU : Utility.Activation
     {
+
         public double Alpha { get; set; }
 
-        public ELU(double alpha)
+        public ELU(ELUSettings settings)
         {
-            Alpha = alpha;
+            Alpha = settings.Alpha;
         }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
@@ -28,5 +29,17 @@ namespace XNet.Activation.Core
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class ELUSettings : Utility.ActivationSettings
+    {
+        public ELUSettings(double alpha = 0.01)
+        {
+            Alpha = alpha;
+        }
+
+        public double Alpha { get; private set; }
+
+        public override Utility.EActivationType Type() => Utility.EActivationType.ELU;
     }
 }

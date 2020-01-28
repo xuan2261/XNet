@@ -4,8 +4,10 @@ using XNet.Math;
 
 namespace XNet.Activation.Core
 {
-    public sealed class ReLUS : Utility.Activation
+    public sealed class ReLU : Utility.Activation
     {
+        public ReLU(ReLUSettings settings = null) { }
+
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 
         public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);
@@ -21,5 +23,10 @@ namespace XNet.Activation.Core
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class ReLUSettings : Utility.ActivationSettings
+    {
+        public override Utility.EActivationType Type() => Utility.EActivationType.ReLU;
     }
 }

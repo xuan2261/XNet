@@ -6,6 +6,8 @@ namespace XNet.Activation.Core
 {
     public sealed class Mish : Utility.Activation
     {
+        public Mish(MishSettings settings = null) { }
+
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 
         public override Matrix Backward(Matrix input) => Matrix.Map(input, Derivative);
@@ -29,5 +31,10 @@ namespace XNet.Activation.Core
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class MishSettings : Utility.ActivationSettings
+    {
+        public override Utility.EActivationType Type() => Utility.EActivationType.Mish;
     }
 }

@@ -8,9 +8,9 @@ namespace XNet.Activation.Core
     {
         public double Alpha { get; set; }
 
-        public LReLU(double alpha)
+        public LReLU(LReLUSettings settings)
         {
-            Alpha = alpha;
+            Alpha = settings.Alpha;
         }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
@@ -21,12 +21,24 @@ namespace XNet.Activation.Core
 
         public override double Derivative(double input) => (input > 0) ? 1 : Alpha;
 
-        public override Utility.EActivationType Type() => Utility.EActivationType.Arctan;
+        public override Utility.EActivationType Type() => Utility.EActivationType.LReLU;
 
         public override string ToString() => Type().ToString();
 
         public override bool Equals(object obj) => base.Equals(obj);
 
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    public sealed class LReLUSettings : Utility.ActivationSettings
+    {
+        public LReLUSettings(double alpha = 0.01)
+        {
+            Alpha = alpha;
+        }
+
+        public double Alpha { get; private set; }
+
+        public override Utility.EActivationType Type() => Utility.EActivationType.LReLU;
     }
 }
