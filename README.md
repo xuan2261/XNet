@@ -31,6 +31,8 @@ The next step will be filling in the blanks and writing the code for each file.
 
 - Supports a varity of optimizers.
 
+- Supports a varity of cost functions.
+
 - Supports a varity of random matrix initialization.
 
 - Extremely Portable.
