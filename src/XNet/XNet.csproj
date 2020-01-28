@@ -118,6 +118,8 @@
     <Compile Include="Utility\Pair.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Cost\Core\" />
+    <Folder Include="Cost\Utility\" />
     <Folder Include="Processing\Audio\" />
     <Folder Include="Processing\Image\" />
     <Folder Include="Processing\Matrix\" />
