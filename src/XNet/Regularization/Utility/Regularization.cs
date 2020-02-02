@@ -12,6 +12,7 @@ namespace XNet.Regularization.Utility
 
         public abstract ERegularizationType Type();
     }
+
     public abstract class RegularizationSettings
     {
         public abstract ERegularizationType Type();
