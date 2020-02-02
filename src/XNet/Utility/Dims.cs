@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using System.Collections.Generic;
 
 namespace XNet.Utility
 {
