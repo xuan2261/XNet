@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using System;
 
 namespace XNet.Utility
 {
