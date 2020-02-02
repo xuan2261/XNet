@@ -9,7 +9,7 @@ namespace XNet.Utility
     /// </summary>
     /// <param name="sender">Sender Object</param>
     /// <param name="args">Sender Arguments</param>
-    delegate void PairEventHandler(Pair sender, PairEventArgs args);
+    public delegate void PairEventHandler(Pair sender, PairEventArgs args);
     
     /// <summary>
     /// Event Argument class for Pair's Call event.
@@ -38,11 +38,11 @@ namespace XNet.Utility
             Secondary = secondary;
         }
 
-        void RaiseEvent() => Call?.Invoke(this, new PairEventArgs(Primary, Secondary));
+        public void RaiseEvent() => Call?.Invoke(this, new PairEventArgs(Primary, Secondary));
  
         public float Primary { get; set; }
         public float Secondary { get; set; }
 
-        event PairEventHandler Call;
+        public event PairEventHandler Call;
     }
 }
