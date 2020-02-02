@@ -2,28 +2,40 @@
 
 using System;
 using XNet.Cost.Utility;
+using XNet.Regularization.Utility;
 using XNet.XMath;
 
 namespace XNet.Cost.Core
 {
+    /// <summary>
+    /// "Hellinger Distance": needs to have positive values, and ideally values between 0 and 1. The same is true for the following divergences.
+    /// </summary>
     public class HellingerDistance : Utility.Cost
     {
+        public HellingerDistance(ERegularizationType regularizationType, double Lambda) : base(regularizationType, Lambda) { }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
 
-        public override Matrix Forward(Matrix Actual, Matrix Expected)
+        public override double Forward(Matrix Actual, Matrix Expected)
         {
-            Matrix errorMatrix = Actual.Duplicate();
+            double error = 0.0;
+            if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
+            {
+                throw new MatrixException("Actual does not have the same size as Expected");
+            }
+
             for (int i = 0; i < Actual.rows; i++)
             {
                 for (int j = 0; j < Actual.cols; j++)
                 {
-                    errorMatrix[i, j] = 1 / Math.Sqrt(2) * Math.Pow((Math.Sqrt(Actual[i, j]) - Math.Sqrt(Expected[i, j])), 2);
+                    error += 1 / Math.Sqrt(2) * Math.Pow((Math.Sqrt(Actual[i, j]) - Math.Sqrt(Expected[i, j])), 2);
                 }
             }
-            return errorMatrix;
+
+            return error;
         }
 
         public override Matrix Backward(Matrix Actual, Matrix Expected)
