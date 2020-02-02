@@ -109,7 +109,6 @@
     <Compile Include="Optimizer\Core\Adamax.cs" />
     <Compile Include="Optimizer\Core\GradientDescent.cs" />
     <Compile Include="Optimizer\Core\Momentum.cs" />
-    <Compile Include="Optimizer\Core\Nadam.cs" />
     <Compile Include="Optimizer\Core\NesterovMomentum.cs" />
     <Compile Include="Optimizer\Core\RMSProp.cs" />
     <Compile Include="Optimizer\Utility\EOptimizerType.cs" />
