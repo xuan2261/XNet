@@ -24,7 +24,7 @@ namespace XNet.Cost.Core
             double error = 0.0;
             if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
             {
-                throw new MatrixException("Actual does not have the same size as Expected");
+                throw new MatrixException("Actual Matrix does not have the same size as The Expected Matrix");
             }
 
             for (int i = 0; i < Actual.rows; i++)
