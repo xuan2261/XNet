@@ -12,8 +12,6 @@ namespace XNet.Cost.Core
     /// </summary>
     public class ItakuraSaitoDistance : Utility.Cost
     {
-        public ItakuraSaitoDistance(ERegularizationType regularizationType, double Lambda) : base(regularizationType, Lambda) { }
-
         public override bool Equals(object obj)
         {
             return base.Equals(obj);

@@ -13,8 +13,6 @@ namespace XNet.Cost.Core
     /// </summary>
     public class QuadraticCost : Utility.Cost
     {
-        public QuadraticCost(ERegularizationType regularizationType, double Lambda) : base(regularizationType, Lambda) { }
-
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
