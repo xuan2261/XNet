@@ -7,7 +7,9 @@ namespace XNet.Regularization.Core
 {
     public sealed class L1 : Utility.Regularization
     {
-        public L1(double lambda) : base(lambda) { }
+        public double Lambda { get; set; }
+
+        public L1(L1Settings settings) : base(settings) { Lambda = settings.Lambda; }
 
         public override bool Equals(object obj) => base.Equals(obj);
 
@@ -18,5 +20,17 @@ namespace XNet.Regularization.Core
         public override string ToString() => Type().ToString();
 
         public override ERegularizationType Type() => ERegularizationType.L1;
+    }
+
+    public sealed class L1Settings : RegularizationSettings
+    {
+        public L1Settings(double lambda)
+        {
+            Lambda = lambda;
+        }
+
+        public override ERegularizationType Type() => ERegularizationType.L1;
+
+        public double Lambda { get; set; }
     }
 }
