@@ -1,29 +1,44 @@
 ﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
 
+
 using System;
 using XNet.Cost.Utility;
+using XNet.Regularization.Utility;
 using XNet.XMath;
 
 namespace XNet.Cost.Core
 {
+    /// <summary>
+    /// "Quadratic Cost": Also known as "Mean Squared Error" or "Maximum Likelihood" or "Sum Squared Error"
+    /// </summary>
     public class QuadraticCost : Utility.Cost
     {
+        public QuadraticCost(ERegularizationType regularizationType, double Lambda) : base(regularizationType, Lambda) { }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
 
-        public override Matrix Forward(Matrix Actual, Matrix Expected)
+        public override double Forward(Matrix Actual, Matrix Expected)
         {
-            Matrix errorMatrix = Actual.Duplicate();
+            double error = 0.0;
+            if(Actual.rows != Expected.rows || Actual.cols != Expected.cols)
+            {
+                throw new MatrixException("Actual does not have the same size as Expected");
+            }
+
             for (int i = 0; i < Actual.rows; i++)
             {
                 for (int j = 0; j < Actual.cols; j++)
                 {
-                    errorMatrix[i, j] = 0.5 * Math.Pow((Actual[i, j] - Expected[i, j]), 2);
+                    error += Math.Pow((Actual[i, j] - Expected[i, j]), 2);
                 }
             }
-            return errorMatrix;
+
+            error /= 2;
+
+            return error;
         }
 
         public override Matrix Backward(Matrix Actual, Matrix Expected)
