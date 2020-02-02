@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
 
 namespace XNet.Optimizer.Utility
 {
@@ -15,7 +11,6 @@ namespace XNet.Optimizer.Utility
         Adamax,
         GradientDescent,
         Momentum,
-        Nadam,
         NesterovMomentum,
         RMSProp
     }
