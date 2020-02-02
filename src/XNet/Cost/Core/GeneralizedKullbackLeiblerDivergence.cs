@@ -2,28 +2,40 @@
 
 using System;
 using XNet.Cost.Utility;
+using XNet.Regularization.Utility;
 using XNet.XMath;
 
 namespace XNet.Cost.Core
 {
+    /// <summary>
+    /// "Generalized Kullback Leibler Divergence": also known as "Bregman divergence"
+    /// </summary>
     public class GeneralizedKullbackLeiblerDivergence : Utility.Cost
     {
+        public GeneralizedKullbackLeiblerDivergence(ERegularizationType regularizationType, double Lambda) : base(regularizationType, Lambda) { }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
 
-        public override Matrix Forward(Matrix Actual, Matrix Expected)
+        public override double Forward(Matrix Actual, Matrix Expected)
         {
-            Matrix errorMatrix = Actual.Duplicate();
+            double error = 0.0;
+            if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
+            {
+                throw new MatrixException("Actual does not have the same size as Expected");
+            }
+
             for (int i = 0; i < Actual.rows; i++)
             {
                 for (int j = 0; j < Actual.cols; j++)
                 {
-                    errorMatrix[i, j] = Expected[i, j] * Math.Log(Expected[i, j] / Actual[i, j]) - Expected[i, j] + Actual[i, j];
+                    error += Expected[i, j] * Math.Log(Expected[i, j] / Actual[i, j]) - Expected[i, j] + Actual[i, j];
                 }
             }
-            return errorMatrix;
+
+            return error;
         }
 
         public override Matrix Backward(Matrix Actual, Matrix Expected)
