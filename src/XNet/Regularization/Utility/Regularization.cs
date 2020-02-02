@@ -6,15 +6,14 @@ namespace XNet.Regularization.Utility
 {
     public abstract class Regularization
     {
-        public double Lambda { get; set; }
-
-        protected Regularization(double lambda)
-        {
-            Lambda = lambda;
-        }
+        public Regularization(RegularizationSettings settings) { }
 
         public abstract double CalculateNorm(Matrix X);
 
+        public abstract ERegularizationType Type();
+    }
+    public abstract class RegularizationSettings
+    {
         public abstract ERegularizationType Type();
     }
 }
