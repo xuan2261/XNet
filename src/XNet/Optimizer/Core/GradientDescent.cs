@@ -1,6 +1,7 @@
-﻿using XNet.XMath;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using XNet.XMath;
 using XNet.Optimizer.Utility;
-using XNet.Regularization.Utility;
 
 namespace XNet.Optimizer.Core
 {
@@ -8,9 +9,9 @@ namespace XNet.Optimizer.Core
     {
         public double Alpha { get; set; }
 
-        public GradientDescent(double alpha)
+        public GradientDescent(GradientDescentSettings settings) : base(settings)
         {
-            Alpha = alpha;
+            Alpha = settings.Alpha;
         }
 
         public override bool Equals(object obj)
@@ -42,5 +43,10 @@ namespace XNet.Optimizer.Core
         {
             return (Alpha * (Matrix.Transpose(b) * dJdb));
         }
+    }
+
+    public sealed class GradientDescentSettings : OptimizerSettings
+    {
+        public double Alpha { get; set; }
     }
 }
