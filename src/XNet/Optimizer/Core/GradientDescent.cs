@@ -8,7 +8,7 @@ namespace XNet.Optimizer.Core
     {
         public double Alpha { get; set; }
 
-        public GradientDescent(ERegularizationType regularizationType, double alpha) : base(regularizationType)
+        public GradientDescent(double alpha)
         {
             Alpha = alpha;
         }
