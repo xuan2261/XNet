@@ -16,23 +16,23 @@ namespace XNet.Utility
     /// </summary>
     public class PairEventArgs : EventArgs
     {
-        public PairEventArgs(float primary, float secondary)
+        public PairEventArgs(double primary, double secondary)
         {
             Primary = primary;
             Secondary = secondary;
         }
 
-        public float Primary { get; private set; }
-        public float Secondary { get; private set; }
+        public double Primary { get; private set; }
+        public double Secondary { get; private set; }
     }
 
     /// <summary>
-    /// Pairs two floating point values together
+    /// Pairs two double values together
     /// The Call Event can be used to apply custom logic that works with those two values
     /// </summary>
     public class Pair
     {
-        public Pair(float primary = 0.0f, float secondary = 0.0f)
+        public Pair(double primary = 0.0f, double secondary = 0.0f)
         {
             Primary = primary;
             Secondary = secondary;
@@ -40,8 +40,9 @@ namespace XNet.Utility
 
         public void RaiseEvent() => Call?.Invoke(this, new PairEventArgs(Primary, Secondary));
  
-        public float Primary { get; set; }
-        public float Secondary { get; set; }
+        public double Primary { get; set; }
+
+        public double Secondary { get; set; }
 
         public event PairEventHandler Call;
     }
