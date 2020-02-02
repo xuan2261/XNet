@@ -11,6 +11,7 @@ namespace XNet.Optimizer.Utility
         Adamax,
         GradientDescent,
         Momentum,
+        Nadam,
         NesterovMomentum,
         RMSProp
     }

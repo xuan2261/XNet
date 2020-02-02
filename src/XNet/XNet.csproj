@@ -80,6 +80,7 @@
     <Compile Include="Layer\Core\Recurrent.cs" />
     <Compile Include="Layer\Utility\ELayerType.cs" />
     <Compile Include="Layer\Utility\Layer.cs" />
+    <Compile Include="Optimizer\Core\Nadam.cs" />
     <Compile Include="XMath\EDistrubution.cs" />
     <Compile Include="XMath\MatrixData.cs" />
     <Compile Include="Network\Core\AE.cs" />
