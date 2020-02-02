@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
+
+using System;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
