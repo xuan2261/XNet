@@ -59,6 +59,7 @@
     <Compile Include="Activation\Core\Tanh.cs" />
     <Compile Include="Activation\Utility\Activation.cs" />
     <Compile Include="Activation\Utility\EActivationType.cs" />
+    <Compile Include="Cost\Core\ExponentionalCost.cs" />
     <Compile Include="Cost\Core\GeneralizedKullbackLeiblerDivergence.cs" />
     <Compile Include="Cost\Core\HellingerDistance.cs" />
     <Compile Include="Cost\Core\CrossEntropyCost.cs" />
