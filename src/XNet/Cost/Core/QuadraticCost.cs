@@ -1,6 +1,5 @@
 ﻿// Copyright © 2020 Aryan Mousavi All Rights Reserved.
 
-
 using System;
 using XNet.Cost.Utility;
 using XNet.Regularization.Utility;
@@ -13,6 +12,8 @@ namespace XNet.Cost.Core
     /// </summary>
     public class QuadraticCost : Utility.Cost
     {
+        public QuadraticCost(QuadraticCostSettings settings) : base(settings) { }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -41,6 +42,11 @@ namespace XNet.Cost.Core
 
         public override Matrix Backward(Matrix Actual, Matrix Expected)
         {
+            if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
+            {
+                throw new MatrixException("Actual Matrix does not have the same size as The Expected Matrix");
+            }
+
             return Actual - Expected;
         }
 
@@ -59,4 +65,6 @@ namespace XNet.Cost.Core
             return ECostType.QuadraticCost;
         }
     }
+
+    public class QuadraticCostSettings : CostSettings { }
 }
