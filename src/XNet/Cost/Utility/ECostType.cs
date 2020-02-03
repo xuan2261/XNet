@@ -6,6 +6,7 @@ namespace XNet.Cost.Utility
     {
         Invalid,
         CrossEntropyCost,
+        ExponentionalCost,
         GeneralizedKullbackLeiblerDivergence,
         HelligerDistance,
         ItakuraSaitoDistance,
