@@ -12,6 +12,8 @@ namespace XNet.Cost.Core
     /// </summary>
     public class HellingerDistance : Utility.Cost
     {
+        public HellingerDistance(HellingerDistanceSettings settings) : base(settings) { }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -29,16 +31,24 @@ namespace XNet.Cost.Core
             {
                 for (int j = 0; j < Actual.cols; j++)
                 {
-                    error += 1 / Math.Sqrt(2) * Math.Pow((Math.Sqrt(Actual[i, j]) - Math.Sqrt(Expected[i, j])), 2);
+                    error += Math.Pow((Math.Sqrt(Actual[i, j]) - Math.Sqrt(Expected[i, j])), 2);
                 }
             }
+
+            error *= (1 / Math.Sqrt(2));
 
             return error;
         }
 
         public override Matrix Backward(Matrix Actual, Matrix Expected)
         {
+            if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
+            {
+                throw new MatrixException("Actual Matrix does not have the same size as The Expected Matrix");
+            }
+
             Matrix gradMatrix = Actual.Duplicate();
+
             for (int i = 0; i < Actual.rows; i++)
             {
                 for (int j = 0; j < Actual.cols; j++)
@@ -46,6 +56,7 @@ namespace XNet.Cost.Core
                     gradMatrix[i, j] = (Math.Sqrt(Actual[i, j]) - Math.Sqrt(Expected[i, j])) / (Math.Sqrt(2) * Math.Sqrt(Actual[i, j]));
                 }
             }
+
             return gradMatrix;
         }
 
@@ -64,4 +75,6 @@ namespace XNet.Cost.Core
             return ECostType.HelligerDistance;
         }
     }
+
+    public class HellingerDistanceSettings : CostSettings { }
 }
