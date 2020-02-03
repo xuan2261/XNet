@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Tanh : Utility.Activation
     {
-        public Tanh(TanhSettings settings = null) { }
+        public Tanh(TanhSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

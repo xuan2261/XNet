@@ -6,10 +6,9 @@ namespace XNet.Activation.Core
 {
     public sealed class ELU : Utility.Activation
     {
-
         public double Alpha { get; set; }
 
-        public ELU(ELUSettings settings)
+        public ELU(ELUSettings settings) : base(settings)
         {
             Alpha = settings.Alpha;
         }

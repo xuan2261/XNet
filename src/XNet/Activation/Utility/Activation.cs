@@ -6,6 +6,8 @@ namespace XNet.Activation.Utility
 {
     public abstract class Activation
     {
+        public Activation(ActivationSettings settings) { }
+
         // Forward Method -> 
         public abstract Matrix Forward(Matrix input);
 

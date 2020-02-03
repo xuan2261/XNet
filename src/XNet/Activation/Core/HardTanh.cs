@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class HardTanh : Utility.Activation
     {
-        public HardTanh(HardTanhSettings settings = null) { }
+        public HardTanh(HardTanhSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

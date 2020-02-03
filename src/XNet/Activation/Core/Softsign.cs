@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Softsign : Utility.Activation
     {
-        public Softsign(SoftsignSettings settings = null) { }
+        public Softsign(SoftsignSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

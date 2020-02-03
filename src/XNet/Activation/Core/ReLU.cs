@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class ReLU : Utility.Activation
     {
-        public ReLU(ReLUSettings settings = null) { }
+        public ReLU(ReLUSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

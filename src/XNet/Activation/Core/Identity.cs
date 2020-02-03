@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Identity : Utility.Activation
     {
-        public Identity(IdentitySettings settings = null) { }
+        public Identity(IdentitySettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

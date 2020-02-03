@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class HardSigmoid : Utility.Activation
     {
-        public HardSigmoid(HardSigmoidSettings settings = null) { }
+        public HardSigmoid(HardSigmoidSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

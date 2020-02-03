@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Softmax : Utility.Activation
     {
-        public Softmax(SoftmaxSettings settings = null) { }
+        public Softmax(SoftmaxSettings settings = null) : base(settings) { }
 
         public double SumExp { get; private set; }
 

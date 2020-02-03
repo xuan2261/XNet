@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class SeLU : Utility.Activation
     {
-        public SeLU(SeLUSettings settings = null) { }
+        public SeLU(SeLUSettings settings = null) : base(settings) { }
 
         public const double Alpha = 1.6732632423543772848170429916717;
 

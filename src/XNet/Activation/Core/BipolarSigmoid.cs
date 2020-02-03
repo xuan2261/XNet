@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class BipolarSigmoid : Utility.Activation
     {
-        public BipolarSigmoid(BipolarSigmoidSettings settings = null) { }
+        public BipolarSigmoid(BipolarSigmoidSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

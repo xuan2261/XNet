@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class BinaryStep : Utility.Activation
     {
-        public BinaryStep(BinaryStepSettings settings = null) { }
+        public BinaryStep(BinaryStepSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

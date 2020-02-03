@@ -8,7 +8,7 @@ namespace XNet.Activation.Core
     {
         public double Alpha { get; set; }
 
-        public LReLU(LReLUSettings settings)
+        public LReLU(LReLUSettings settings) : base(settings)
         {
             Alpha = settings.Alpha;
         }

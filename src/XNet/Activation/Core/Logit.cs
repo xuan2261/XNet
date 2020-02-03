@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Logit : Utility.Activation
     {
-        public Logit(LogitSettings settings = null) { }
+        public Logit(LogitSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

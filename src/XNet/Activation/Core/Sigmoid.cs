@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Sigmoid : Utility.Activation
     {
-        public Sigmoid(SigmoidSettings settings = null) { }
+        public Sigmoid(SigmoidSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

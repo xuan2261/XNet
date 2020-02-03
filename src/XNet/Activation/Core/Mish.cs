@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Mish : Utility.Activation
     {
-        public Mish(MishSettings settings = null) { }
+        public Mish(MishSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 

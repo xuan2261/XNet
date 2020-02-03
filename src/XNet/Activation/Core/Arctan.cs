@@ -6,7 +6,7 @@ namespace XNet.Activation.Core
 {
     public sealed class Arctan : Utility.Activation
     {
-        public Arctan(ArctanSettings settings = null) { }
+        public Arctan(ArctanSettings settings = null) : base(settings) { }
 
         public override Matrix Forward(Matrix input) => Matrix.Map(input, Activate);
 
