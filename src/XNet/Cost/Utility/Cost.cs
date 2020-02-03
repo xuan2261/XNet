@@ -11,6 +11,8 @@ namespace XNet.Cost.Utility
     /// </summary>
     public abstract class Cost
     {
+        public Cost(CostSettings settings) { }
+
         public Regularization.Utility.Regularization Regularization;
 
         public ERegularizationType RegularizationType { get; private set; }
@@ -20,5 +22,9 @@ namespace XNet.Cost.Utility
         public abstract Matrix Backward(Matrix Actual, Matrix Expected);
 
         public abstract ECostType Type();
+    }
+
+    public abstract class CostSettings
+    {
     }
 }
