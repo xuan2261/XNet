@@ -10,7 +10,7 @@ namespace XNet.Layer.Core
     {
         public int NeuronCount { get; private set; }
 
-        public FullyConnected(int neuronCount, int index, Activation.Utility.ActivationSettings activationSettings, LayerSettings layerSettings) : base(index, activationSettings, layerSettings)
+        public FullyConnected(int neuronCount, int index, Activation.Utility.ActivationSettings activationSettings) : base(neuronCount, index, activationSettings)
         {
             NeuronCount = neuronCount;
         }
@@ -19,7 +19,7 @@ namespace XNet.Layer.Core
         {
             return base.Equals(obj);
         }
-
+        
         public override void Forward(ref MatrixData input)
         {
             // Get previous a
