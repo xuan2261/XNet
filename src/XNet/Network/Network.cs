@@ -15,15 +15,26 @@ namespace XNet.Network
 
         public Matrix Forward(Matrix input)
         {
+            MatrixData data = Data;
             for (int i = 1; i < Layers.Count; i++)
             {
-                Layers[i].Forward(ref Data);
+                Layers[i].Forward(ref data);
             }
+            Data = data;
+
+            return Data.Data["Z" + (Layers.Count).ToString()];
         }
 
         public double Backward(Matrix input)
         {
+            MatrixData data = Data;
+            for (int i = 1; i < Layers.Count; i++)
+            {
+                Layers[i].Backward(ref data);
+            }
+            Data = data;
 
+            return Data.Data["E" + (Layers.Count).ToString()][0, 0];
         }
 
         public bool CreateLayer(int nCount, ELayerType type, Activation.Utility.ActivationSettings activationSettings)
