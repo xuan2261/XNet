@@ -74,32 +74,6 @@ namespace XNet.Layer.Core
             return base.GetHashCode();
         }
 
-        public override Dims InShape()
-        {
-            // These will be initialized in the Network class
-            int x = GlobalData.Data["IS" + (Index).ToString()].rows;
-            int y = GlobalData.Data["IS" + (Index).ToString()].cols;
-
-            Dims dims = new Dims();
-            dims.Values.Add(x);
-            dims.Values.Add(y);
-
-            return dims;
-        }
-
-        public override Dims OutShape()
-        {
-            // These will be initialized in the Network class
-            int x = GlobalData.Data["OS" + (Index).ToString()].rows;
-            int y = GlobalData.Data["OS" + (Index).ToString()].cols;
-
-            Dims dims = new Dims();
-            dims.Values.Add(x);
-            dims.Values.Add(y);
-
-            return dims;
-        }
-
         public override string ToString()
         {
             return base.ToString();
