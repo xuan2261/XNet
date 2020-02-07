@@ -378,6 +378,7 @@ namespace XNet.XMath
         // Function generates the random matrix
         public static Matrix RandomMatrix(int iRows, int iCols, int dispersion, EDistrubution distrubution)
         {
+            Matrix matrix = new Matrix(iRows, iCols);
             if (distrubution == EDistrubution.Invalid)
             {
                 throw new MatrixException("Invalid Random Distribution Mode!");
@@ -385,7 +386,6 @@ namespace XNet.XMath
             else if (distrubution == EDistrubution.Uniform)
             {
                 Random random = new Random();
-                Matrix matrix = new Matrix(iRows, iCols);
                 for (int i = 0; i < iRows; i++)
                 {
                     for (int j = 0; j < iCols; j++)
@@ -393,14 +393,10 @@ namespace XNet.XMath
                         matrix[i, j] = random.Next(-dispersion, dispersion);
                     }
                 }
-                return matrix;
             }
             else if (distrubution == EDistrubution.Gaussian)
             {
                 Random random = new Random(); //reuse this if you are generating many
-
-                Matrix matrix = new Matrix(iRows, iCols);
-
 
                 for (int i = 0; i < iRows; i++)
                 {
@@ -420,9 +416,8 @@ namespace XNet.XMath
                         matrix[i, j] = randNormal;
                     }
                 }
-
             }
-            throw new MatrixException("Invalid Random Distribution Mode!");
+            return matrix;
         }
 
         // Function parses the matrix from string
