@@ -108,8 +108,6 @@ namespace XNet.Layer.Utility
 
         public virtual Dims OutShape() => LayerConfig.OutShape;
 
-        public abstract void InitLayer(Layer next);
-
         public int Index { get; private set; }
     }
 
