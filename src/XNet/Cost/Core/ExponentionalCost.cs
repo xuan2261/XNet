@@ -24,7 +24,7 @@ namespace XNet.Cost.Core
             return base.Equals(obj);
         }
 
-        public override double Forward(Matrix Actual, Matrix Expected)
+        public override double Forward(Matrix Actual, Matrix Expected, MatrixData data, int layerCount)
         {
             double error = 0.0;
             if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
@@ -46,16 +46,24 @@ namespace XNet.Cost.Core
 
             error *= Tao;
 
+            error += regularizationValue;
+
             BatchCost += error;
             return error;
         }
 
-        public override Matrix Backward(Matrix Actual, Matrix Expected)
+        public override Matrix Backward(Matrix Actual, Matrix Expected, MatrixData data, int layerCount)
         {
             double error = 0.0;
             if (Actual.rows != Expected.rows || Actual.cols != Expected.cols)
             {
                 throw new MatrixException("Actual Matrix does not have the same size as The Expected Matrix");
+            }
+
+            double regularizationValue = 0.0;
+            for (int i = 0; i < layerCount; i++)
+            {
+                regularizationValue = RegularizationFunction.CalculateNorm(data.Data["W" + i.ToString()]);
             }
 
             for (int i = 0; i < Actual.rows; i++)
@@ -104,9 +112,6 @@ namespace XNet.Cost.Core
     {
         public double Tao { get; set; }
 
-        public ExponentionalCostSettings(double tao)
-        {
-            Tao = tao;
-        }
+        public ExponentionalCostSettings(double tao, ERegularizationType regularizationType, RegularizationSettings regularizationSettings) : base(regularizationType, regularizationSettings) { Tao = tao; }
     }
 }
