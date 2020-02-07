@@ -33,7 +33,7 @@ namespace XNet.Layer.Core
             Matrix b = input.Data["b" + (Index).ToString()];
 
             // Calculate Z and store it
-            Matrix Z = Matrix.Transpose(W) * prev_A + b;
+            Matrix Z = Matrix.Transpose(W).Dot((prev_A)) + b;
             input.Data["Z" + (Index).ToString()] = Z;
 
             // Calculate a and store it
