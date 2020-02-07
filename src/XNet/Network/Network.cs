@@ -19,7 +19,7 @@ using XNet.Regularization.Utility;
 
 namespace XNet.Network
 {
-    public abstract class Network
+    public class Network
     {
         public Network()
         {
