@@ -30,22 +30,22 @@ namespace XNet.Network
         public Matrix Forward(Matrix input, Matrix expected, ref double error)
         {
             // Initiate the Input Matrix Data in MatrixData class
-            Data.Data["a-1"] = input;
+            Data.Data["a0"] = input;
             MatrixData data = Data;
             
-            for (int i = 0; i < Layers.Count; i++)
+            for (int i = 1; i < Layers.Count; i++)
             {
                 Layers[i].Forward(ref data);
             }
 
             Data = data;
 
-            m_actual = Data.Data["a" + (Layers.Count).ToString()];
+            m_actual = Data.Data["a" + (Layers.Count - 1).ToString()];
             m_expected = expected;
 
-            error = CostFunction.Forward(Data.Data["a" + (Layers.Count).ToString()], expected, Data, Layers.Count);
+            error = CostFunction.Forward(Data.Data["a" + (Layers.Count - 1).ToString()], expected, Data, Layers.Count);
 
-            return Data.Data["a" + (Layers.Count).ToString()];
+            return Data.Data["a" + (Layers.Count - 1).ToString()];
 
         }
 
@@ -54,17 +54,18 @@ namespace XNet.Network
             Data.Data["da" + Layers.Count.ToString()] = CostFunction.Backward(m_actual, m_expected, Data, Layers.Count);
 
             MatrixData data = Data;
-            for (int i = Layers.Count; i > 0 ; i--)
+            for (int i = Layers.Count - 1; i > 1; i--)
             {
                 Layers[i].Backward(ref data);
             }
             Data = data;
 
             // CostFunction.ResetCost();
+            Optimize();
             return CostFunction.BatchCost;
         }
 
-        public void Optimize()
+        private void Optimize()
         {
             MatrixData data = Data;
             for (int i = 0; i < Layers.Count; i++)
@@ -84,36 +85,47 @@ namespace XNet.Network
                     throw new ArgumentException("Invalid \"type\" argument.");
                 case ELayerType.AveragePooling:
                     layer = new AveragePooling(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.AverageUnpooling:
                     layer = new AverageUnpooling(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.Convolutional:
                     layer = new Convolutional(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.Deconvolutional:
                     layer = new Deconvolutional(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.Dropout:
                     layer = new Dropout(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.FullyConnected:
                     layer = new FullyConnected(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.GatedRecurrent:
                     layer = new GatedRecurrent(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.LSTM:
                     layer = new LSTM(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.MaxPooling:
                     layer = new MaxPooling(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.MaxUnpooling:
                     layer = new MaxUnpooling(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 case ELayerType.Recurrent:
                     layer = new Recurrent(nCount, Layers.Count, activationSettings);
+                    Layers.Add(layer);
                     return true;
                 default:
                     throw new ArgumentException("Invalid \"type\" argument.");
@@ -126,18 +138,31 @@ namespace XNet.Network
             Utility.Dims OutShape;
             Utility.Dims WShape;
 
-            for (int i = 0; i < Layers.Count - 1; i++)
+            for (int i = 1; i < Layers.Count; i++)
             {
+                Data.Data["a" + i.ToString()] = new Matrix(Layers[i].NCount, 1);
                 InShape = new Utility.Dims(Layers[i].NCount, 1);
-                OutShape = new Utility.Dims(Layers[i + 1].NCount, 1);
-                WShape = new Utility.Dims(Layers[i].NCount, Layers[i + 1].NCount);
+
+                Data.Data["b" + i.ToString()] = Matrix.RandomMatrix(Layers[i].NCount, 1, 1, EDistrubution.Gaussian);
+
+                OutShape = new Utility.Dims(Layers[i].NCount, 1);
+
+                Data.Data["W" + i.ToString()] = Matrix.RandomMatrix(Layers[i - 1].NCount, Layers[i].NCount, 1, EDistrubution.Gaussian);
+                WShape = new Utility.Dims(Layers[i - 1].NCount, Layers[i].NCount);
+
                 Layers[i].SetSettings(new LayerSettings(InShape, OutShape, WShape));
             }
 
-            InShape = new Utility.Dims(Layers[Layers.Count - 1].NCount, 1);
-            OutShape = new Utility.Dims(Layers[Layers.Count - 1].NCount, 1);
-            WShape = new Utility.Dims(0, 0);
-            Layers[Layers.Count - 1].SetSettings(new LayerSettings(InShape, OutShape, WShape));
+            Data.Data["a0"] = new Matrix(Layers[0].NCount, 1);
+            InShape = new Utility.Dims(Layers[0].NCount, 1);
+
+            Data.Data["b0"] = new Matrix(Layers[0].NCount, 1);
+            OutShape = new Utility.Dims(Layers[0].NCount, 1);
+
+            Data.Data["W0"] = new Matrix(Layers[0].NCount * Layers[1].NCount , Layers[1].NCount);
+            WShape = new Utility.Dims(Layers[0].NCount * Layers[1].NCount , Layers[1].NCount);
+
+            Layers[0].SetSettings(new LayerSettings(InShape, OutShape, WShape));
 
             switch (costType)
             {
