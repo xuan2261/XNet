@@ -8,7 +8,7 @@ namespace XNet.Cost.Utility
         CrossEntropyCost,
         ExponentionalCost,
         GeneralizedKullbackLeiblerDivergence,
-        HelligerDistance,
+        HellingerDistance,
         ItakuraSaitoDistance,
         KullbackLeiblerDivergence,
         QuadraticCost
