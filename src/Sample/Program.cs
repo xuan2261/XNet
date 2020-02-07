@@ -28,7 +28,7 @@ namespace Sample
     class Program
     {
         static void Main(string[] args)
-        {
+       {
             Network net = new Network();
             net.CreateLayer(2, ELayerType.FullyConnected, new XNet.Activation.Core.ReLUSettings());
             net.CreateLayer(4, ELayerType.FullyConnected, new XNet.Activation.Core.ReLUSettings());
@@ -41,27 +41,28 @@ namespace Sample
 
             double err = 0.0;
 
-            Matrix input0 = new Matrix(1, 2);
+            Matrix input0 = new Matrix(2, 1);
             input0[0, 0] = 0;
-            input0[0, 1] = 0;
+            input0[1, 0] = 0;
             Matrix output0 = new Matrix(1, 1);
             output0[0, 0] = 0;
 
-            Matrix input1 = new Matrix(1, 2);
+            Matrix input1 = new Matrix(2, 1);
             input0[0, 0] = 0;
-            input0[0, 1] = 1;
+            input0[1, 0] = 1;
             Matrix output1 = new Matrix(1, 1);
             output0[0, 0] = 1;
 
-            Matrix input2 = new Matrix(1, 2);
+            Matrix input2 = new Matrix(2, 1);
             input0[0, 0] = 1;
-            input0[0, 1] = 0;
+            input0[1, 0] = 0;
             Matrix output2 = new Matrix(1, 1);
             output0[0, 0] = 1;
 
-            Matrix input3 = new Matrix(1, 2);
+            Matrix input3 = new Matrix(2, 1);
             input0[0, 0] = 1;
-            input0[0, 1] = 1;
+            input0[1, 0] = 1;
+
             Matrix output3 = new Matrix(1, 1);
             output0[0, 0] = 0;
 
