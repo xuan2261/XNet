@@ -32,6 +32,12 @@ namespace XNet.Cost.Core
                 throw new MatrixException("Actual Matrix does not have the same size as The Expected Matrix");
             }
 
+            double regularizationValue = 0.0;
+            for (int i = 0; i < layerCount; i++)
+            {
+                regularizationValue = RegularizationFunction.CalculateNorm(data.Data["W" + i.ToString()]);
+            }
+
             for (int i = 0; i < Actual.rows; i++)
             {
                 for (int j = 0; j < Actual.cols; j++)
