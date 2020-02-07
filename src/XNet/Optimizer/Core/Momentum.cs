@@ -8,10 +8,12 @@ namespace XNet.Optimizer.Core
     public sealed class Momentum : Utility.Optimizer
     {
         public double Alpha { get; set; }
+        public double Tao { get; set; }
 
         public Momentum(MomentumSettings settings) : base(settings)
         {
             Alpha = settings.Alpha;
+            Tao = settings.Tao;
         }
 
         public override bool Equals(object obj)
