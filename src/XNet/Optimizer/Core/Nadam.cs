@@ -9,7 +9,7 @@ namespace XNet.Optimizer.Core
     {
         public double Alpha { get; set; }
 
-        public Nadam(AdaGradSettings settings) : base(settings)
+        public Nadam(NadamSettings settings) : base(settings)
         {
             Alpha = settings.Alpha;
         }
