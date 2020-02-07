@@ -47,6 +47,11 @@ namespace XNet.Optimizer.Core
 
     public sealed class GradientDescentSettings : OptimizerSettings
     {
-        public double Alpha { get; set; }
+        public double Alpha { get; private set; }
+
+        public GradientDescentSettings(double alpha)
+        {
+            Alpha = alpha;
+        }
     }
 }
