@@ -10,7 +10,7 @@ namespace XNet.Activation.Core
 
         public double SumExp { get; private set; }
 
-        public Softmax()
+        public Softmax() : base(null)
         {
             SumExp = 0.0;
         }
