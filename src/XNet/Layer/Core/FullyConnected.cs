@@ -22,22 +22,23 @@ namespace XNet.Layer.Core
         
         public override void Forward(ref MatrixData input)
         {
+            // First layer will be a-1
             // Get previous a
             Matrix prev_A = input.Data["a" + (Index - 1).ToString()];
 
             // Get previous W
-            Matrix prev_W = input.Data["W" + (Index - 1).ToString()];
+            Matrix W = input.Data["W" + (Index).ToString()];
 
-            // Get previous B
-            Matrix prev_b = input.Data["b" + (Index - 1).ToString()];
+            // Get previous b
+            Matrix b = input.Data["b" + (Index).ToString()];
 
-            // Calculate current Z and store it
-            Matrix current_Z = Matrix.Transpose(prev_W) * prev_A + prev_b;
-            input.Data["Z" + (Index).ToString()] = current_Z;
+            // Calculate Z and store it
+            Matrix Z = Matrix.Transpose(W) * prev_A + b;
+            input.Data["Z" + (Index).ToString()] = Z;
 
-            // Calculate current a and store it
-            Matrix current_A = Activation.Forward(current_Z);
-            input.Data["a" + (Index).ToString()] = current_Z;
+            // Calculate a and store it
+            Matrix A = Activation.Forward(Z);
+            input.Data["a" + (Index).ToString()] = Z;
 
             // Formula For a[i]: g[i]((W_Transpose[i] . z[i-1]) + B[i])
 
@@ -47,17 +48,18 @@ namespace XNet.Layer.Core
 
         public override void Backward(ref MatrixData input)
         {
-            // Calculate current dz and store it
-            Matrix current_dz = input.Data["da" + (Index).ToString()].ElementMul(Activation.Backward(input.Data["Z" + (Index).ToString()]));
-            input.Data["dZ" + (Index).ToString()] = current_dz;
+            // The only thing we need to put into the Input Matrix is the last calculated da
+            // Calculate dz and store it
+            Matrix dz = input.Data["da" + (Index).ToString()].ElementMul(Activation.Backward(input.Data["Z" + (Index).ToString()]));
+            input.Data["dZ" + (Index).ToString()] = dz;
 
-            // Calculate current dw and store it
-            Matrix current_dw = input.Data["dZ" + (Index).ToString()].Dot(input.Data["a" + (Index - 1).ToString()]);
-            input.Data["dW" + (Index).ToString()] = current_dw;
+            // Calculate dw and store it
+            Matrix dw = input.Data["dZ" + (Index).ToString()].Dot(input.Data["a" + (Index - 1).ToString()]);
+            input.Data["dW" + (Index).ToString()] = dw;
 
-            // Calculate current db and store it
-            Matrix current_db = current_dz;
-            input.Data["db" + (Index).ToString()] = current_db;
+            // Calculate db and store it
+            Matrix db = dz;
+            input.Data["db" + (Index).ToString()] = db;
 
             // Calculate previous da and store it
             Matrix prev_da = Matrix.Transpose(input.Data["W" + (Index).ToString()]).Dot(input.Data["dZ" + (Index).ToString()]);
