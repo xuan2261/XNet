@@ -11,7 +11,7 @@ namespace XNet.Cost.Utility
     /// </summary>
     public abstract class Cost
     {
-        public Cost(CostSettings settings) { }
+        public Cost(CostSettings settings) { BatchCost = 0; }
 
         public Regularization.Utility.Regularization Regularization;
 
@@ -22,6 +22,10 @@ namespace XNet.Cost.Utility
         public abstract Matrix Backward(Matrix Actual, Matrix Expected);
 
         public abstract ECostType Type();
+
+        public double BatchCost { get; protected set; }
+
+        public virtual void ResetCost() { BatchCost = 0; }
     }
 
     public abstract class CostSettings

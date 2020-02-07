@@ -46,6 +46,7 @@ namespace XNet.Cost.Core
 
             error *= Tao;
 
+            BatchCost += error;
             return error;
         }
 

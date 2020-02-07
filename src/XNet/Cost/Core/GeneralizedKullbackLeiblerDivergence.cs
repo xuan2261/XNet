@@ -35,6 +35,7 @@ namespace XNet.Cost.Core
                 }
             }
 
+            BatchCost += error;
             return error;
         }
 
