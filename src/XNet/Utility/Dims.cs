@@ -15,7 +15,19 @@ namespace XNet.Utility
 
         public Dims()
         {
-            Values = new List<int>();
+            Values = new List<int>
+            {
+                Capacity = 2
+            };
+        }
+
+        public Dims(int x, int y)
+        {
+            Values = new List<int>
+            {
+                x,
+                y
+            };
         }
     }
 }

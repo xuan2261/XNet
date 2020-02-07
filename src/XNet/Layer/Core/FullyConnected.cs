@@ -10,7 +10,7 @@ namespace XNet.Layer.Core
     {
         public int NeuronCount { get; private set; }
 
-        public FullyConnected(int neuronCount, int index, Activation.Utility.ActivationSettings activationSettings, LayerSettings layerSettings) : base(index, activationSettings, layerSettings)
+        public FullyConnected(int neuronCount, int index, Activation.Utility.ActivationSettings activationSettings) : base(neuronCount, index, activationSettings)
         {
             NeuronCount = neuronCount;
         }
@@ -19,7 +19,7 @@ namespace XNet.Layer.Core
         {
             return base.Equals(obj);
         }
-
+        
         public override void Forward(ref MatrixData input)
         {
             // Get previous a
@@ -72,32 +72,6 @@ namespace XNet.Layer.Core
         public override int GetHashCode()
         {
             return base.GetHashCode();
-        }
-
-        public override Dims InShape()
-        {
-            // These will be initialized in the Network class
-            int x = GlobalData.Data["IS" + (Index).ToString()].rows;
-            int y = GlobalData.Data["IS" + (Index).ToString()].cols;
-
-            Dims dims = new Dims();
-            dims.Values.Add(x);
-            dims.Values.Add(y);
-
-            return dims;
-        }
-
-        public override Dims OutShape()
-        {
-            // These will be initialized in the Network class
-            int x = GlobalData.Data["OS" + (Index).ToString()].rows;
-            int y = GlobalData.Data["OS" + (Index).ToString()].cols;
-
-            Dims dims = new Dims();
-            dims.Values.Add(x);
-            dims.Values.Add(y);
-
-            return dims;
         }
 
         public override string ToString()

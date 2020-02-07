@@ -21,13 +21,15 @@ namespace XNet.Layer.Utility
         
         public LayerSettings LayerConfig { get; private set; }
 
-        public Layer(int index, ActivationSettings activationSettings, LayerSettings layerSettings)
+        public int NCount { get; private set; }
+
+        public Layer(int nCount, int index, ActivationSettings activationSettings)
         {
+            NCount = nCount;
+
             Index = index;
 
             ActivationType = activationSettings.Type();
-
-            LayerConfig = layerSettings;
 
             // Activation Setup
             switch (activationSettings.Type())
@@ -90,7 +92,12 @@ namespace XNet.Layer.Utility
                     throw new ArgumentException("Activation Type Invalid.");
             }
         }
-        
+
+        public void SetSettings(LayerSettings layerSettings)
+        {
+            LayerConfig = layerSettings;
+        }
+
         public abstract void Forward(ref MatrixData input);
 
         public abstract void Backward(ref MatrixData input);
@@ -101,18 +108,22 @@ namespace XNet.Layer.Utility
 
         public virtual Dims OutShape() => LayerConfig.OutShape;
 
+        public abstract void InitLayer(Layer next);
+
         public int Index { get; private set; }
     }
 
-    public abstract class LayerSettings
+    public class LayerSettings
     {
         public Dims InShape { get; private set; }
         public Dims OutShape { get; private set; }
+        public Dims WShape { get; private set; }
 
-        public LayerSettings(Dims inShape, Dims outShape)
+        public LayerSettings(Dims inShape, Dims outShape, Dims wShape)
         {
             InShape = inShape;
             OutShape = outShape;
+            WShape = wShape;
         }
     }
 }

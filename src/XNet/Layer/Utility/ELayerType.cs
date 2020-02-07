@@ -4,6 +4,7 @@ namespace XNet.Layer.Utility
 {
     public enum ELayerType
     {
+        Invalid,
         AveragePooling,
         AverageUnpooling,
         Convolutional,
