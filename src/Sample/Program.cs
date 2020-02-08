@@ -30,13 +30,14 @@ namespace Sample
         static void Main(string[] args)
        {
             Network net = new Network();
-            net.CreateLayer(2, ELayerType.FullyConnected, new XNet.Activation.Core.ReLUSettings());
-            net.CreateLayer(4, ELayerType.FullyConnected, new XNet.Activation.Core.ReLUSettings());
-            net.CreateLayer(1, ELayerType.FullyConnected, new XNet.Activation.Core.ReLUSettings());
+            net.CreateLayer(2, ELayerType.FullyConnected, new ReLUSettings());
+            net.CreateLayer(4, ELayerType.FullyConnected, new ReLUSettings());
+            net.CreateLayer(1, ELayerType.FullyConnected, new ReLUSettings());
 
             net.InitNetwork(
-                ERegularizationType.L2, new L2Settings(0.5), ECostType.CrossEntropyCost,
-                new CrossEntropyCostSettings(ERegularizationType.L2, new L2Settings(0.5)), 
+                // Cost
+                ECostType.CrossEntropyCost, new CrossEntropyCostSettings(ERegularizationType.L2, new L2Settings(0.5)), 
+                // Optimizer
                 EOptimizerType.GradientDescent, new GradientDescentSettings(0.01));
 
             double err = 0.0;
