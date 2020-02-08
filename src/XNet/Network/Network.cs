@@ -132,7 +132,7 @@ namespace XNet.Network
             }
         }
 
-        public void InitNetwork(ERegularizationType regularizationType, RegularizationSettings regularizationSettings, ECostType costType, CostSettings costSettings, EOptimizerType optimizerType, OptimizerSettings optimizerSettings)
+        public void InitNetwork(ECostType costType, CostSettings costSettings, EOptimizerType optimizerType, OptimizerSettings optimizerSettings)
         {
             Utility.Dims InShape;
             Utility.Dims OutShape;
@@ -166,27 +166,27 @@ namespace XNet.Network
 
             switch (costType)
             {
-                case Cost.Utility.ECostType.Invalid:
+                case ECostType.Invalid:
                     throw new ArgumentException("Invalid Cost Function Selected!");
-                case Cost.Utility.ECostType.CrossEntropyCost:
+                case ECostType.CrossEntropyCost:
                     CostFunction = new CrossEntropyCost((CrossEntropyCostSettings)costSettings);
                     break;
-                case Cost.Utility.ECostType.ExponentionalCost:
+                case ECostType.ExponentionalCost:
                     CostFunction = new ExponentionalCost((ExponentionalCostSettings)costSettings);
                     break;
-                case Cost.Utility.ECostType.GeneralizedKullbackLeiblerDivergence:
+                case ECostType.GeneralizedKullbackLeiblerDivergence:
                     CostFunction = new GeneralizedKullbackLeiblerDivergence((GeneralizedKullbackLeiblerDivergenceSettings)costSettings);
                     break;
-                case Cost.Utility.ECostType.HellingerDistance:
+                case ECostType.HellingerDistance:
                     CostFunction = new HellingerDistance((HellingerDistanceSettings)costSettings);
                     break;
-                case Cost.Utility.ECostType.ItakuraSaitoDistance:
+                case ECostType.ItakuraSaitoDistance:
                     CostFunction = new ItakuraSaitoDistance((ItakuraSaitoDistanceSettings)costSettings);
                     break;
-                case Cost.Utility.ECostType.KullbackLeiblerDivergence:
+                case ECostType.KullbackLeiblerDivergence:
                     CostFunction = new KullbackLeiblerDivergence((KullbackLeiblerDivergenceSettings)costSettings);
                     break;
-                case Cost.Utility.ECostType.QuadraticCost:
+                case ECostType.QuadraticCost:
                     CostFunction = new QuadraticCost((QuadraticCostSettings)costSettings);
                     break;
                 default:
