@@ -36,12 +36,12 @@ namespace XNet.Optimizer.Core
 
         public override Matrix CalculateDeltaW(Matrix W, Matrix dJdW)
         {
-            return (Alpha * (Matrix.Transpose(W) * dJdW));
+            return (Alpha * (Matrix.Transpose(W).ElementMul(dJdW)));
         }
 
         public override Matrix CalculateDeltaB(Matrix b, Matrix dJdb)
         {
-            return (Alpha * (Matrix.Transpose(b) * dJdb));
+            return (Alpha * (b.ElementMul(dJdb)));
         }
     }
 
