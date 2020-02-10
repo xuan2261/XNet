@@ -51,26 +51,26 @@ namespace XNet.Network
 
         public double Backward()
         {
-            Data.Data["da" + Layers.Count.ToString()] = CostFunction.Backward(m_actual, m_expected, Data, Layers.Count);
+            Data.Data["da" + (Layers.Count - 1).ToString()] = CostFunction.Backward(m_actual, m_expected, Data, Layers.Count);
 
             MatrixData data = Data;
-            for (int i = Layers.Count - 1; i > 1; i--)
+            for (int i = Layers.Count - 1; i > 0; i--)
             {
                 Layers[i].Backward(ref data);
             }
             Data = data;
 
             // CostFunction.ResetCost();
-            Optimize();
+
             return CostFunction.BatchCost;
         }
 
-        private void Optimize()
+        public void Optimize()
         {
             MatrixData data = Data;
-            for (int i = 0; i < Layers.Count; i++)
+            for (int i = 1; i < Layers.Count; i++)
             {
-                Data.Data["W" + i.ToString()] -= OptimizerFunction.CalculateDeltaW(Data.Data["W" + i.ToString()], Data.Data["dW" + i.ToString()]);
+                Data.Data["W" + i.ToString()] -= Matrix.Transpose(OptimizerFunction.CalculateDeltaW(Data.Data["W" + i.ToString()], Data.Data["dW" + i.ToString()]));
                 Data.Data["b" + i.ToString()] -= OptimizerFunction.CalculateDeltaB(Data.Data["b" + i.ToString()], Data.Data["db" + i.ToString()]);
             }
             Data = data;
