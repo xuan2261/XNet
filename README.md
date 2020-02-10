@@ -1,6 +1,8 @@
-# PROJECT: XNET
+# PROJECT: XNET (Abandoned)
 
 ## INTRODUCTION
+
+This project is abandoned.
 
 Welcome To the XNet Project, before anything, let's see what XNet actually is: 
 It's A framework made to ease the creation, development, porting and maintaining of Artificial Intelligence in general.
