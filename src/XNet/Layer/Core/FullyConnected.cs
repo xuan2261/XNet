@@ -54,7 +54,7 @@ namespace XNet.Layer.Core
             input.Data["dZ" + (Index).ToString()] = dz;
 
             // Calculate dw and store it
-            Matrix dw = input.Data["dZ" + (Index).ToString()].Dot(input.Data["a" + (Index - 1).ToString()]);
+            Matrix dw = input.Data["dZ" + (Index).ToString()].Dot(Matrix.Transpose(input.Data["a" + (Index - 1).ToString()]));
             input.Data["dW" + (Index).ToString()] = dw;
 
             // Calculate db and store it
@@ -62,7 +62,7 @@ namespace XNet.Layer.Core
             input.Data["db" + (Index).ToString()] = db;
 
             // Calculate previous da and store it
-            Matrix prev_da = Matrix.Transpose(input.Data["W" + (Index).ToString()]).Dot(input.Data["dZ" + (Index).ToString()]);
+            Matrix prev_da = input.Data["W" + (Index).ToString()].Dot(input.Data["dZ" + (Index).ToString()]);
             input.Data["da" + (Index - 1).ToString()] = prev_da;
 
             // Formula dZ[i]: ((W_Transpose[i+1] . dZ[i+1]) * g'[i](z[i]))
