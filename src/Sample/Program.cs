@@ -36,7 +36,7 @@ namespace Sample
 
             net.InitNetwork(
                 // Cost
-                ECostType.CrossEntropyCost, new CrossEntropyCostSettings(ERegularizationType.L2, new L2Settings(0.5)), 
+                ECostType.QuadraticCost, new QuadraticCostSettings(ERegularizationType.L2, new L2Settings(0.5)), 
                 // Optimizer
                 EOptimizerType.GradientDescent, new GradientDescentSettings(0.01));
 
@@ -67,13 +67,15 @@ namespace Sample
             Matrix output3 = new Matrix(1, 1);
             output0[0, 0] = 0;
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1; i++)
             {
                 net.Forward(input0, output0, ref err);
                 net.Backward();
+                net.Optimize();
 
                 net.Forward(input1, output1, ref err);
                 net.Backward();
+                net.Optimize();
 
                 net.Forward(input2, output2, ref err);
                 net.Backward();
@@ -85,10 +87,10 @@ namespace Sample
                 
             }
 
-            Console.WriteLine(net.Forward(input0, output0, ref err).ToString());
-            Console.WriteLine(net.Forward(input1, output1, ref err).ToString());
-            Console.WriteLine(net.Forward(input2, output2, ref err).ToString());
-            Console.WriteLine(net.Forward(input3, output3, ref err).ToString());
+            Console.WriteLine(net.Forward(input0, output0, ref err).ToString()); // 0
+            Console.WriteLine(net.Forward(input1, output1, ref err).ToString()); // 1
+            Console.WriteLine(net.Forward(input2, output2, ref err).ToString()); // 1
+            Console.WriteLine(net.Forward(input3, output3, ref err).ToString()); // 0
         }
     }
 }
